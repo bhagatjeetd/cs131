@@ -1,9 +1,54 @@
 section 1
+1. mkdir a1 to make the directory then cd a1 to go to that directory
 2. home directory path is cd ~. command is mv to move back to home directory.
 3. I figured this out using the text book and stack overflow. ID is 1251. Group is 1252.
+
+id -u
+id -G
+
 4. Memory: iomem and meminfo. CPU: cpuinfo
+
+ls /proc | grep -i mem
+ls /proc | grep -i cpu
+
 5. MemTotal:       73080640 kB
 MemFree:        31247104 kB
 MemAvailable:   44537984 kB
+
+head -n 5 /proc/meminfo
+
 6. 256 processers. Name: IBM, 8247-22L. Speed: 3425.00MHz
+
+grep -c ^processor /proc/cpuinfo
+grep -m 1 'model name' /proc/cpuinfo
+
 7. NAME="Red Hat Enterprise Linux". ID="rhel". CPE_NAME="cpe:/o:redhat:enterprise_linux:8::baseos"
+
+cat /etc/os-release
+
+Section 2
+8. Average amount paid by customers who were picked up on May 12, 2019 (2019-05-12) is 18.6652.
+
+grep '2019-05-12' 2019-05.csv > may_12_filtered.csv
+awk -F, '{sum += $17; count++} END {if (count > 0) print sum/count; else print "No data"}' may_12_filtered.csv
+
+9. the highest total amount paid by customers who were picked up on May 12, 2019 (2019-05-12) is 460.04.
+
+grep '2019-05-12' 2019-05.csv > may_12_filtered.csv
+awk -F, 'NR > 1 {if ($17 > max) max=$17} END {print max}' may_12_filtered.csv
+
+10. 
+  39909 236.0
+  37140 237.0
+  36990 161.0
+  33678 230.0
+  28506 170.0
+  27895 162.0
+  27485 48.0
+  26782 142.0
+  25051 239.0
+  24609 234.0
+
+awk -F, '$4 >= 3 {print $9}' 2019-05.csv > may_2019_dropoff_locations.txt
+sort may_2019_dropoff_locations.txt | uniq -c | sort -nr > sorted_dropoff_counts.txt
+head -n 10 sorted_dropoff_counts.txt
