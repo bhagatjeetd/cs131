@@ -1,17 +1,17 @@
-Task 1: Collect lines with Vendor 1.0 into vendor2.csv and show result of wc in a3.txt
+1. Collect lines with Vendor 1.0 into vendor2.csv and show result of wc in a3.txt
 sed -n '/,1\.0,/p' 2019-10.csv > vendor2.csv
 wc vendor2.csv > a3.txt
 
-Task 2: Remove colons, double quotes, and hyphens from 2019-10.csv and save as no-separators.csv
-tr -d ':"-' < 2019-10.csv > no-separators.csv
+2. Remove colons, double quotes, and hyphens from 2019-10.csv and save as no-separators.csv
+sed 's/[:\"\-]//g' 2019-10.csv > no-separators.csv
 head -10 no-separators.csv >> a3.txt
 
-Task 3: Remove fractional parts of all numbers in no-separators.csv and save as no-fractions.csv
+3. Remove fractional parts of all numbers in no-separators.csv and save as no-fractions.csv
 sed 's/\([0-9]\+\)\.[0-9]\+/\1/g' no-separators.csv > no-fractions.csv
 head -10 no-fractions.csv >> a3.txt
 
-Task 4: Identify the frequency of tip amounts for customers who paid $10.0 or more
-awk -F, '$18 >= 10.0 {tips[$14]++} END {for (tip in tips) print tip, tips[tip]}' 2019-10.csv > results.txt
+4. Identify the frequency of tip amounts for customers who paid $10.0 or more
+awk -F, '$17 >= 10 {tips[$14]++} END {for (tip in tips) print tip, tips[tip]}' 2019-10.csv > results.txt
 
-Task 5: Find the 5 most common tips and save to a3.txt
-sort -k2,2nr results.txt | head -n 5 > a3.txt
+5. Find the 5 most common tips and save to a3.txt
+sort -k2,2nr results.txt | head -n 5 >> a3.txt
