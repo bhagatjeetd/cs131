@@ -1,1 +1,27 @@
 
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the dataset
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
+white_wine_data = pd.read_csv(url, sep=';')
+
+# Set up the matplotlib figure
+plt.figure(figsize=(18, 15))
+
+# List of features to plot
+features = white_wine_data.columns[:-1]  # Exclude the target variable 'quality'
+
+# Create a subplot for each feature
+for i, feature in enumerate(features):
+    plt.subplot(4, 3, i+1)
+    sns.violinplot(x=white_wine_data[feature], color='skyblue')
+    plt.title(f'Violin Plot of {feature}')
+    plt.xlabel('')
+
+# Adjust the layout
+plt.tight_layout()
+
+# Show the plots
+plt.show()
