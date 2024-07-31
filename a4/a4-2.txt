@@ -1,1 +1,19 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
+white_wine_data = pd.read_csv(url, sep=';')
+
+# Calculate the correlation matrix
+correlation_matrix = white_wine_data.corr()
+
+# Set up the matplotlib figure
+plt.figure(figsize=(12, 8))
+
+# Draw the heatmap
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, center=0, linewidths=0.5, linecolor='black')
+
+# Title and show the plot
+plt.title('Correlation Matrix of White Wine Features and Quality')
+plt.show()
