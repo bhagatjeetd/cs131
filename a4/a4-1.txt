@@ -1,1 +1,19 @@
+# Load the dataset
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
+white_wine_data = pd.read_csv(url, sep=';')
 
+# Display the first few rows of the dataset
+print(white_wine_data.head())
+
+# Obtain descriptive statistics
+statistics = white_wine_data.describe(percentiles=[.25, .5, .75]).T
+
+# Add the min and max values to the table
+statistics['min'] = white_wine_data.min()
+statistics['max'] = white_wine_data.max()
+
+# Reorder the columns
+statistics = statistics[['mean', 'std', 'min', '25%', '50%', '75%', 'max']]
+
+# Display the table
+print(statistics)
