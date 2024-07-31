@@ -1,1 +1,19 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
+# Load the dataset
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
+white_wine_data = pd.read_csv(url, sep=';')
+
+# Plot the histogram of the target variable 'quality'
+plt.figure(figsize=(10, 6))
+sns.histplot(white_wine_data['quality'], bins=10, kde=True)
+
+# Title and labels
+plt.title('Histogram of White Wine Quality')
+plt.xlabel('Quality')
+plt.ylabel('Frequency')
+
+# Show the plot
+plt.show()
