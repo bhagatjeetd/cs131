@@ -1,4 +1,5 @@
 import pandas as pd 
+import seaborn as sns
 
 # Calculate statistical summaries for both location and age group variables
 location_stats = df_merged[location_columns].describe().T
